@@ -4,32 +4,29 @@
 name: 'Execução por deploy'
 
 # triggers ou gatilhos de execução (regras de disparo)
-  # gatilho de exec manual = workflow-run
+# gatilho de exec manual = workflow-run
 
 on:
   workflow_run:
     workflows: ['Execução manual N1'] # simulando o deploy
-    types: 
+    types:
       - completed
 
 jobs:
-
-  # descrição do job 
+  # descrição do job
   e2e-tests:
-
-    # maquina que o job vai executar 
+    # maquina que o job vai executar
     runs-on: ['ubuntu-latest']
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # passo a passo das ações do job
     steps:
-      
       # clone
       - uses: actions/checkout@v4
 
-     # - uses: actions/setup-node@v4
-     #   with:
-     #     node-version: lts/*
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: lts/*
 
       - name: Instalando Yarn
         run: npm install -g yarn
@@ -49,5 +46,3 @@ jobs:
         with:
           name: relatorio-de-testes
           path: ./playwright-report
-
-
