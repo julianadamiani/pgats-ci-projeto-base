@@ -1,13 +1,14 @@
-# CI de nível 01 - Disparo manual a partir de 1 clique
+# CI de nível 02 - Disparo automático em períodos definidos
 
 # nome que vai aparecer nas opções de pipe
-name: 'Execução manual N1'
+name: 'Execução agendada'
 
 # triggers ou gatilhos de execução (regras de disparo)
-  # gatilho de exec manual = workflow-dispatch
+  # gatilho de exec manual = schedule
 
 on:
-  workflow-dispatch:
+  schedule:
+    -cron: '0 8 * * 1'
 
 jobs:
 
@@ -23,8 +24,7 @@ jobs:
       # clone
       - uses: actions/checkout@v4
 
-     # se precisar testar em uma versão específica do node:
-     #- uses: actions/setup-node@v4
+     # - uses: actions/setup-node@v4
      #   with:
      #     node-version: lts/*
 

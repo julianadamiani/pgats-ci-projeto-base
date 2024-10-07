@@ -1,13 +1,16 @@
-# CI de nível 01 - Disparo manual a partir de 1 clique
+# CI de nível 03 - Disparo automático sempre que outro for concluído, como deploy
 
 # nome que vai aparecer nas opções de pipe
-name: 'Execução manual N1'
+name: 'Execução por deploy'
 
 # triggers ou gatilhos de execução (regras de disparo)
-  # gatilho de exec manual = workflow-dispatch
+  # gatilho de exec manual = workflow-run
 
 on:
-  workflow-dispatch:
+  workflow_run:
+    workflows: ['Execução manual N1'] # simulando o deploy
+    types: 
+      - completed
 
 jobs:
 
@@ -17,14 +20,14 @@ jobs:
     # maquina que o job vai executar 
     runs-on: ['ubuntu-latest']
 
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     # passo a passo das ações do job
     steps:
       
       # clone
       - uses: actions/checkout@v4
 
-     # se precisar testar em uma versão específica do node:
-     #- uses: actions/setup-node@v4
+     # - uses: actions/setup-node@v4
      #   with:
      #     node-version: lts/*
 
