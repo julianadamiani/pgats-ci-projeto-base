@@ -1,6 +1,5 @@
 # CI de nível 02 - Disparo automático em períodos definidos
 
-# nome que vai aparecer nas opções de pipe
 name: 'Execução agendada'
 
 # triggers ou gatilhos de execução (regras de disparo)
