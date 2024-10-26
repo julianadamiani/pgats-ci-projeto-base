@@ -81,6 +81,10 @@ jobs:
           name: relatorio-de-testes
           path: ./playwright-report
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: [e22-tests]
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [e22-tests]
+
+    steps:
+      - name: Deploy
+        run: echo "step deploy"
