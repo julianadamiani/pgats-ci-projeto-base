@@ -25,7 +25,7 @@ jobs:
       - name: Padronizacao de codigo (Lint)
         run: yarn lint
 
-  unit: 
+  unit:
     runs-on: ['ubuntu-latest']
 
     steps:
